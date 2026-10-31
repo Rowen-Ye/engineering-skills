@@ -1,58 +1,30 @@
-# 工程技能集 · engineering-skills
+# 工程技能导航
 
-源于实际工作的 AI 工程技能集，将理论分析、工程实践与实验验证沉淀为可安装、可复用的 Agent Skills。
+这里汇总我在实际工作中整理的 AI 工程技能。每个 skill 使用独立仓库维护，按需下载、安装和更新。
 
-本仓库按独立 skill 维护方法与工具，面向希望把工程经验用于 AI 协作的开发者。文档使用中文；采用 MIT 许可证，欢迎贡献脱敏案例与改进。
+## 技能列表
 
-## 当前技能
-
-| 技能 | 用途 | 状态 |
+| 技能 | 适用问题 | 安装与文档 |
 |---|---|---|
-| [performance-engineering](skills/performance-engineering/SKILL.md) | 以理论建模、业界研究和可复现实验定位性能瓶颈，验证优化收益 | 首版；LLM 推理提供完整演示，跨领域入口尚未逐设备实测 |
+| performance-engineering · 性能工程 | 定位性能瓶颈，研究理论与方案，设计实验并验证收益 | [独立仓库](https://github.com/Rowen-Ye/performance-engineering) |
 
-覆盖 CPU、GPU/NPU、LLM 推理、内存/NUMA、虚拟化/容器、网络/RDMA、分布式系统、存储/I/O。支持从简短分析到八阶段完整攻关，按需读取资料。
+后续技能会继续加入此列表。本导航不包含技能安装包，克隆它不会安装任何 skill。请进入需要的技能仓库，按其 README 安装。
 
-## 下载安装
+## 性能工程 Skill
 
-需要 Git（或下载 ZIP）与 Python 3.10+。仅 skill 文档可手动安装，不需要 Python；运行数据工具才需要 Python。
+从工作负载与性能目标出发，结合理论建模、业界研究和可复现实验开展调优。覆盖多个系统领域的分析入口，提供 LLM 推理演示；示例数据为人工构造，不代表真实优化收益。
 
-```sh
-git clone https://github.com/Rowen-Ye/engineering-skills.git
-cd engineering-skills
-python3 scripts/install.py
-```
+在 Codex 中输入：
 
-默认安装至 `${CODEX_HOME:-~/.codex}/skills/performance-engineering`，已有目录会拒绝覆盖。更新前自行备份并移走旧目录，再运行安装；脚本不会自动修改已有配置或下载依赖。
-
-[下载源码 ZIP](https://github.com/Rowen-Ye/engineering-skills/archive/refs/heads/main.zip) 后，解压并运行同一安装命令。也可手动将 `skills/performance-engineering` 整个文件夹复制到 Codex 的 skills 目录。
-
-自定义安装位置：
-```sh
-python3 scripts/install.py --dest /你的路径/skills
-```
-
-重新打开 Codex 会话，确认可以发现 `performance-engineering`，随后调用：
 ```text
-$performance-engineering 分析当前 LLM 推理服务的 TTFT 问题。先检查工作负载和现有证据，调研适用理论与业界方案，再设计可证伪实验。没有实测数据时不要声称定位了瓶颈。
+$skill-installer 请从这个仓库安装 performance-engineering：
+https://github.com/Rowen-Ye/performance-engineering
 ```
 
-其他支持目录式 Agent Skills 的工具可尝试手动安装；尚未逐一验证兼容性。
+## 版本迁移说明
 
-## 使用与验证
+性能工程 Skill 已迁至独立仓库。本仓库历史版本 v0.1.0 保留作归档，后续更新请使用独立仓库，不再运行旧版安装脚本。
 
-- [八阶段入口](skills/performance-engineering/SKILL.md)
-- [LLM 完整演示与复现命令](skills/performance-engineering/examples/llm-inference/README.md)
-- [基准数据格式](skills/performance-engineering/references/benchmark-format.md)
-- [报告模板](skills/performance-engineering/templates/report.md)
+## 贡献
 
-```sh
-python3 -m unittest discover -s tests -v
-```
-
-数据脚本只做描述统计，不自动证明因果或显著性。示例全部使用明确标注的人工构造数据。真实研究需要联网工具，真实 Profiling 需要匹配的设备、工具和权限；缺失时应交付方案与未验证项。
-
-分析产物与知识积累写入使用者项目，不写入安装目录，不自动上传。生产变更及高风险操作需要对应授权。
-
-## 贡献与授权
-
-参见 [贡献指南](CONTRIBUTING.md) 和 [MIT 许可证](LICENSE)。新增 skill 应有清晰触发边界、渐进式资料、可复现示例，并说明验证范围。
+欢迎通过 Issue 或 PR 推荐新的独立技能仓库，请说明用途、安装方式、验证范围与许可证。不要提交内部代码、凭据或未经许可的数据。
